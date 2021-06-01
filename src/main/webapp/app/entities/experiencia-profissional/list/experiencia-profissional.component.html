@@ -1,0 +1,143 @@
+<div>
+  <h2 id="page-heading" data-cy="ExperienciaProfissionalHeading">
+    <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.home.title">Experiencia Profissionals</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-experiencia-profissional"
+        [routerLink]="['/experiencia-profissional/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.home.createLabel"> Create a new Experiencia Profissional </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="experienciaProfissionals?.length === 0">
+    <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.home.notFound">No experienciaProfissionals found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="experienciaProfissionals && experienciaProfissionals.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="empresa">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cargo">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.cargo">Cargo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="segmento">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.segmento">Segmento</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="porte">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.porte">Porte</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="inicio">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.inicio">Inicio</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fim">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.fim">Fim</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descricaoAtividade">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.descricaoAtividade">Descricao Atividade</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="salario">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.salario">Salario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="beneficios">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.beneficios">Beneficios</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criado">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.criado">Criado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pessoa.nome">
+            <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.pessoa">Pessoa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let experienciaProfissional of experienciaProfissionals; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/experiencia-profissional', experienciaProfissional.id, 'view']">{{ experienciaProfissional.id }}</a>
+          </td>
+          <td>{{ experienciaProfissional.empresa }}</td>
+          <td>{{ experienciaProfissional.cargo }}</td>
+          <td>{{ experienciaProfissional.segmento }}</td>
+          <td>{{ experienciaProfissional.porte }}</td>
+          <td>{{ experienciaProfissional.inicio | formatMediumDate }}</td>
+          <td>{{ experienciaProfissional.fim | formatMediumDate }}</td>
+          <td>{{ experienciaProfissional.descricaoAtividade }}</td>
+          <td>{{ experienciaProfissional.salario }}</td>
+          <td>{{ experienciaProfissional.beneficios }}</td>
+          <td>{{ experienciaProfissional.criado | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="experienciaProfissional.pessoa">
+              <a [routerLink]="['/pessoa', experienciaProfissional.pessoa?.id, 'view']">{{ experienciaProfissional.pessoa?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/experiencia-profissional', experienciaProfissional.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/experiencia-profissional', experienciaProfissional.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(experienciaProfissional)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="experienciaProfissionals && experienciaProfissionals.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

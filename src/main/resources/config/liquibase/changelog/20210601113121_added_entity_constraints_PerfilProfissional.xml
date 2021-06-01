@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity PerfilProfissional.
+    -->
+    <changeSet id="20210601113121-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="area_id"
+                                 baseTableName="perfil_profissional"
+                                 constraintName="fk_perfil_profissional__area_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="area_atuacao"/>
+
+        <addForeignKeyConstraint baseColumnNames="pessoa_id"
+                                 baseTableName="perfil_profissional"
+                                 constraintName="fk_perfil_profissional__pessoa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"/>
+    </changeSet>
+</databaseChangeLog>

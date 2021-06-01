@@ -1,0 +1,27 @@
+{
+  "portalVagasEmpregoApp": {
+    "funcaoPessoa": {
+      "home": {
+        "title": "Funcao Pessoas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Funcao Pessoa",
+        "createOrEditLabel": "Criar ou editar Funcao Pessoa",
+        "notFound": "Nenhum Funcao Pessoa encontrado"
+      },
+      "created": "Um novo Funcao Pessoa foi criado com o identificador {{ param }}",
+      "updated": "Um Funcao Pessoa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Funcao Pessoa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Funcao Pessoa {{ id }}?"
+      },
+      "detail": {
+        "title": "Funcao Pessoa"
+      },
+      "id": "ID",
+      "funcao": "Funcao",
+      "criado": "Criado",
+      "ativo": "Ativo",
+      "pessoa": "Pessoa"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "portalVagasEmpregoApp": {
+    "perfilProfissional": {
+      "home": {
+        "title": "Perfil Profissionals",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Perfil Profissional",
+        "createOrEditLabel": "Criar ou editar Perfil Profissional",
+        "notFound": "Nenhum Perfil Profissional encontrado"
+      },
+      "created": "Um novo Perfil Profissional foi criado com o identificador {{ param }}",
+      "updated": "Um Perfil Profissional foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Perfil Profissional foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Perfil Profissional {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Profissional"
+      },
+      "id": "ID",
+      "estagio": "Estagio",
+      "procurandoEmprego": "Procurando Emprego",
+      "objetivosPessoais": "Objetivos Pessoais",
+      "pretensaoSalarial": "Pretensao Salarial",
+      "criado": "Criado",
+      "area": "Area",
+      "pessoa": "Pessoa"
+    }
+  }
+}

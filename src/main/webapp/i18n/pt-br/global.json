@@ -7,6 +7,17 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
+        "empresa": "Empresa",
+        "vaga": "Vaga",
+        "pessoa": "Pessoa",
+        "funcaoPessoa": "Funcao Pessoa",
+        "endereco": "Endereco",
+        "areaAtuacao": "Area Atuacao",
+        "perfilProfissional": "Perfil Profissional",
+        "experienciaProfissional": "Experiencia Profissional",
+        "formacao": "Formacao",
+        "curso": "Curso",
+        "idioma": "Idioma",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

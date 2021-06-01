@@ -1,0 +1,91 @@
+{
+  "name": "Pessoa",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nacionalidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "naturalidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pcd",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pcdCID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cnh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fotoUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "endereco",
+      "otherEntityField": "cep",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "pessoa",
+      "relationshipName": "user",
+      "otherEntityField": "login",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "pessoa",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113117"
+}

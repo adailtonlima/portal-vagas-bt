@@ -1,0 +1,29 @@
+{
+  "portalVagasEmpregoApp": {
+    "formacao": {
+      "home": {
+        "title": "Formacaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Formacao",
+        "createOrEditLabel": "Criar ou editar Formacao",
+        "notFound": "Nenhum Formacao encontrado"
+      },
+      "created": "Um novo Formacao foi criado com o identificador {{ param }}",
+      "updated": "Um Formacao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Formacao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Formacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Formacao"
+      },
+      "id": "ID",
+      "instituicao": "Instituicao",
+      "tipo": "Tipo",
+      "inicio": "Inicio",
+      "conclusao": "Conclusao",
+      "criado": "Criado",
+      "pessoa": "Pessoa"
+    }
+  }
+}

@@ -42,7 +42,21 @@
     "jwtSecretKey": "ODZmNTYzZmNhN2YwOWJmNTI2ZDE3ZGNkNzgzM2ZlZmNiN2M4Mzk4ZTgxOWZmNDZmZjM2MTYxYTU2YmMwZmMyZmQzMGQ1ZjE5ZDU5OWU1YmI3ZmNlY2MwNDFjMThiZWExZmU2MzY4ZjkwMjI4ZWQ4OTg4OTlhMzczOGM2MWVmNTg=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": [
+      "Empresa",
+      "Vaga",
+      "Pessoa",
+      "FuncaoPessoa",
+      "Endereco",
+      "AreaAtuacao",
+      "PerfilProfissional",
+      "ExperienciaProfissional",
+      "Formacao",
+      "Curso",
+      "Idioma"
+    ],
+    "lastLiquibaseTimestamp": 1622547085000
   },
   "git-provider": "GitHub",
   "git-company": "adailtonlima",

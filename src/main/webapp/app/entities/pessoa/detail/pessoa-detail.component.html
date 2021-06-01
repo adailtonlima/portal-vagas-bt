@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pessoa">
+      <h2 data-cy="pessoaDetailsHeading"><span jhiTranslate="portalVagasEmpregoApp.pessoa.detail.title">Pessoa</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pessoa.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.nome">Nome</span></dt>
+        <dd>
+          <span>{{ pessoa.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.email">Email</span></dt>
+        <dd>
+          <span>{{ pessoa.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.dataNascimento">Data Nascimento</span></dt>
+        <dd>
+          <span>{{ pessoa.dataNascimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.cpf">Cpf</span></dt>
+        <dd>
+          <span>{{ pessoa.cpf }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.telefone">Telefone</span></dt>
+        <dd>
+          <span>{{ pessoa.telefone }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.nacionalidade">Nacionalidade</span></dt>
+        <dd>
+          <span>{{ pessoa.nacionalidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.naturalidade">Naturalidade</span></dt>
+        <dd>
+          <span>{{ pessoa.naturalidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.sexo">Sexo</span></dt>
+        <dd>
+          <span>{{ pessoa.sexo }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.estadoCivil">Estado Civil</span></dt>
+        <dd>
+          <span>{{ pessoa.estadoCivil }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.pcd">Pcd</span></dt>
+        <dd>
+          <span>{{ pessoa.pcd }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.pcdCID">Pcd CID</span></dt>
+        <dd>
+          <span>{{ pessoa.pcdCID }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.cnh">Cnh</span></dt>
+        <dd>
+          <span>{{ pessoa.cnh }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.fotoUrl">Foto Url</span></dt>
+        <dd>
+          <span>{{ pessoa.fotoUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.criado">Criado</span></dt>
+        <dd>
+          <span>{{ pessoa.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.endereco">Endereco</span></dt>
+        <dd>
+          <div *ngIf="pessoa.endereco">
+            <a [routerLink]="['/endereco', pessoa.endereco?.id, 'view']">{{ pessoa.endereco?.cep }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.pessoa.user">User</span></dt>
+        <dd>
+          <span>{{ pessoa.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pessoa', pessoa.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

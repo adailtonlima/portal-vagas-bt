@@ -1,0 +1,38 @@
+{
+  "name": "Idioma",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nivel",
+      "fieldType": "NivelIdioma",
+      "fieldValues": "LEITURA,ESCRITA,CONVERSACAO"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "idioma",
+      "relationshipName": "pessoa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "idioma",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113125"
+}

@@ -1,0 +1,148 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-perfil-profissional-heading"
+        data-cy="PerfilProfissionalCreateUpdateHeading"
+        jhiTranslate="portalVagasEmpregoApp.perfilProfissional.home.createOrEditLabel"
+      >
+        Create or edit a Perfil Profissional
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.perfilProfissional.estagio" for="field_estagio"
+            >Estagio</label
+          >
+          <input type="checkbox" class="form-check" name="estagio" id="field_estagio" data-cy="estagio" formControlName="estagio" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="portalVagasEmpregoApp.perfilProfissional.procurandoEmprego"
+            for="field_procurandoEmprego"
+            >Procurando Emprego</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="procurandoEmprego"
+            id="field_procurandoEmprego"
+            data-cy="procurandoEmprego"
+            formControlName="procurandoEmprego"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="portalVagasEmpregoApp.perfilProfissional.objetivosPessoais"
+            for="field_objetivosPessoais"
+            >Objetivos Pessoais</label
+          >
+          <textarea
+            class="form-control"
+            name="objetivosPessoais"
+            id="field_objetivosPessoais"
+            data-cy="objetivosPessoais"
+            formControlName="objetivosPessoais"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="portalVagasEmpregoApp.perfilProfissional.pretensaoSalarial"
+            for="field_pretensaoSalarial"
+            >Pretensao Salarial</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pretensaoSalarial"
+            id="field_pretensaoSalarial"
+            data-cy="pretensaoSalarial"
+            formControlName="pretensaoSalarial"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.perfilProfissional.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('criado')!.invalid && (editForm.get('criado')!.dirty || editForm.get('criado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('criado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('criado')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.perfilProfissional.area" for="field_area">Area</label>
+          <select class="form-control" id="field_area" data-cy="area" name="area" formControlName="area">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="areaAtuacaoOption.id === editForm.get('area')!.value?.id ? editForm.get('area')!.value : areaAtuacaoOption"
+              *ngFor="let areaAtuacaoOption of areaAtuacaosSharedCollection; trackBy: trackAreaAtuacaoById"
+            >
+              {{ areaAtuacaoOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.perfilProfissional.pessoa" for="field_pessoa">Pessoa</label>
+          <select class="form-control" id="field_pessoa" data-cy="pessoa" name="pessoa" formControlName="pessoa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pessoaOption.id === editForm.get('pessoa')!.value?.id ? editForm.get('pessoa')!.value : pessoaOption"
+              *ngFor="let pessoaOption of pessoasSharedCollection; trackBy: trackPessoaById"
+            >
+              {{ pessoaOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

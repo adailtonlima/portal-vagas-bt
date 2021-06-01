@@ -1,0 +1,158 @@
+
+entity Empresa {
+	
+    nome String required
+    cnpj String
+    porte String
+    criado ZonedDateTime required
+  
+}
+
+
+entity Vaga {
+	
+    descricao TextBlob required
+    titulo String required
+    estagio Boolean
+    salario Double
+    beneficios Double
+    jornadaSemanal Double
+    
+    bannerUrl String
+    fonte String
+    linkRecrutamento String
+    
+    ativo Boolean
+    
+    preenchida Boolean
+    criado ZonedDateTime required
+    prazoAnuncio ZonedDateTime
+    
+}
+
+entity Pessoa {
+	nome String required
+	email String
+	dataNascimento LocalDate
+	cpf String
+	telefone String 
+	nacionalidade String
+	naturalidade String
+	sexo String
+	estadoCivil String
+	pcd Boolean
+    pcdCID String
+    cnh String
+    fotoUrl String
+    criado ZonedDateTime required
+}
+
+enum Funcao{
+	ADMIN, VAGAS, CANDIDATOS
+}
+
+entity FuncaoPessoa {
+	funcao Funcao
+    criado ZonedDateTime required
+    ativo Boolean
+}
+
+relationship OneToOne {
+	Empresa{endereco(cep)} to Endereco
+	Pessoa{endereco(cep)} to Endereco
+    Pessoa{user(login)} to User
+    Empresa{user(login)} to User
+}
+relationship ManyToOne {
+	FuncaoPessoa{pessoa(nome)} to Pessoa
+	Vaga{cadastrou(nome)} to Pessoa
+	Vaga{empresa(nome)} to Empresa
+	Empresa{area(nome)} to AreaAtuacao
+	PerfilProfissional{area(nome)} to AreaAtuacao
+    PerfilProfissional{pessoa(nome)} to Pessoa
+    ExperienciaProfissional{pessoa(nome)} to Pessoa
+    Formacao{pessoa(nome)} to Pessoa
+    Curso{pessoa(nome)} to Pessoa
+    Idioma{pessoa(nome)} to Pessoa
+}
+entity Endereco {
+	cep String required
+	logradouro String
+    complemento String
+    numero String
+    uf String
+    municipio String
+    bairro String
+    latitude Double
+    longitude Double
+    criado ZonedDateTime required
+}
+	
+entity AreaAtuacao{
+	nome String
+    descricao String    
+    iconeUrl String
+    ativo Boolean
+    criado ZonedDateTime required
+}
+
+entity PerfilProfissional {
+	estagio Boolean
+    procurandoEmprego Boolean
+    objetivosPessoais TextBlob
+    pretensaoSalarial Double    
+    criado ZonedDateTime required
+}
+entity ExperienciaProfissional{
+	empresa String
+    cargo String
+    segmento String
+    porte String
+    inicio LocalDate
+    fim LocalDate
+    descricaoAtividade TextBlob
+    salario Double
+    beneficios Double
+    criado ZonedDateTime required
+}
+entity Formacao {
+	instituicao String
+    tipo String
+    inicio LocalDate
+    conclusao LocalDate
+    criado ZonedDateTime required
+}
+
+entity Curso {
+	nome String
+    descricao TextBlob
+    periodo LocalDate
+    criado ZonedDateTime required
+}
+
+enum NivelIdioma{
+	LEITURA, ESCRITA, CONVERSACAO
+}
+
+entity Idioma {
+  nome String
+  nivel NivelIdioma
+  criado ZonedDateTime required
+}
+
+// Set pagination options
+paginate * with pagination
+dto * with mapstruct
+service all with serviceImpl
+filter *
+
+//LISTAGEM DE REQUISITOS
+//Reserva de espaços físicos para reservas de veículos.
+//O sistema deve ter parâmetros de km, valor da gasolina, tipo dos veículos
+//A seleção dos veículos deverá ser feita por uma lista de seleção
+//O sistema deve ter uma agenda
+//Definir nível de acesso para inserção das informações, delimitar acesso dos usuários
+
+//Requitios Pendentes
+//Layout da webpage
+//Verificar com a professora Yomara.

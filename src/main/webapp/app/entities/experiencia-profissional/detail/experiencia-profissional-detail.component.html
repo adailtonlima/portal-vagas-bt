@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="experienciaProfissional">
+      <h2 data-cy="experienciaProfissionalDetailsHeading">
+        <span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.detail.title">Experiencia Profissional</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.empresa">Empresa</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.empresa }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.cargo">Cargo</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.cargo }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.segmento">Segmento</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.segmento }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.porte">Porte</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.porte }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.inicio">Inicio</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.inicio | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.fim">Fim</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.fim | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.descricaoAtividade">Descricao Atividade</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.descricaoAtividade }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.salario">Salario</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.salario }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.beneficios">Beneficios</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.beneficios }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.criado">Criado</span></dt>
+        <dd>
+          <span>{{ experienciaProfissional.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.experienciaProfissional.pessoa">Pessoa</span></dt>
+        <dd>
+          <div *ngIf="experienciaProfissional.pessoa">
+            <a [routerLink]="['/pessoa', experienciaProfissional.pessoa?.id, 'view']">{{ experienciaProfissional.pessoa?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/experiencia-profissional', experienciaProfissional.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
