@@ -1,0 +1,38 @@
+{
+  "name": "FuncaoPessoa",
+  "fields": [
+    {
+      "fieldName": "funcao",
+      "fieldType": "Funcao",
+      "fieldValues": "ADMIN,VAGAS,CANDIDATOS"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "funcaoPessoa",
+      "relationshipName": "pessoa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "funcao_pessoa",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113118"
+}

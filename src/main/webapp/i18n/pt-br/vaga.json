@@ -1,0 +1,38 @@
+{
+  "portalVagasEmpregoApp": {
+    "vaga": {
+      "home": {
+        "title": "Vagas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Vaga",
+        "createOrEditLabel": "Criar ou editar Vaga",
+        "notFound": "Nenhum Vaga encontrado"
+      },
+      "created": "Um novo Vaga foi criado com o identificador {{ param }}",
+      "updated": "Um Vaga foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Vaga foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Vaga {{ id }}?"
+      },
+      "detail": {
+        "title": "Vaga"
+      },
+      "id": "ID",
+      "descricao": "Descricao",
+      "titulo": "Titulo",
+      "estagio": "Estagio",
+      "salario": "Salario",
+      "beneficios": "Beneficios",
+      "jornadaSemanal": "Jornada Semanal",
+      "bannerUrl": "Banner Url",
+      "fonte": "Fonte",
+      "linkRecrutamento": "Link Recrutamento",
+      "ativo": "Ativo",
+      "preenchida": "Preenchida",
+      "criado": "Criado",
+      "prazoAnuncio": "Prazo Anuncio",
+      "cadastrou": "Cadastrou",
+      "empresa": "Empresa"
+    }
+  }
+}

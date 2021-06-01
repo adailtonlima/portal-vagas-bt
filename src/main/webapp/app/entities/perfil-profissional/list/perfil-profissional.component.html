@@ -1,0 +1,133 @@
+<div>
+  <h2 id="page-heading" data-cy="PerfilProfissionalHeading">
+    <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.home.title">Perfil Profissionals</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-perfil-profissional"
+        [routerLink]="['/perfil-profissional/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.home.createLabel"> Create a new Perfil Profissional </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="perfilProfissionals?.length === 0">
+    <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.home.notFound">No perfilProfissionals found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="perfilProfissionals && perfilProfissionals.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="estagio">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.estagio">Estagio</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="procurandoEmprego">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.procurandoEmprego">Procurando Emprego</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="objetivosPessoais">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.objetivosPessoais">Objetivos Pessoais</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pretensaoSalarial">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.pretensaoSalarial">Pretensao Salarial</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criado">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.criado">Criado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="area.nome">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.area">Area</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pessoa.nome">
+            <span jhiTranslate="portalVagasEmpregoApp.perfilProfissional.pessoa">Pessoa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perfilProfissional of perfilProfissionals; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/perfil-profissional', perfilProfissional.id, 'view']">{{ perfilProfissional.id }}</a>
+          </td>
+          <td>{{ perfilProfissional.estagio }}</td>
+          <td>{{ perfilProfissional.procurandoEmprego }}</td>
+          <td>{{ perfilProfissional.objetivosPessoais }}</td>
+          <td>{{ perfilProfissional.pretensaoSalarial }}</td>
+          <td>{{ perfilProfissional.criado | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="perfilProfissional.area">
+              <a [routerLink]="['/area-atuacao', perfilProfissional.area?.id, 'view']">{{ perfilProfissional.area?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="perfilProfissional.pessoa">
+              <a [routerLink]="['/pessoa', perfilProfissional.pessoa?.id, 'view']">{{ perfilProfissional.pessoa?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/perfil-profissional', perfilProfissional.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/perfil-profissional', perfilProfissional.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(perfilProfissional)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="perfilProfissionals && perfilProfissionals.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

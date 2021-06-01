@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="idioma">
+      <h2 data-cy="idiomaDetailsHeading"><span jhiTranslate="portalVagasEmpregoApp.idioma.detail.title">Idioma</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ idioma.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.idioma.nome">Nome</span></dt>
+        <dd>
+          <span>{{ idioma.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.idioma.nivel">Nivel</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'portalVagasEmpregoApp.NivelIdioma.' + idioma.nivel }}">{{ idioma.nivel }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.idioma.criado">Criado</span></dt>
+        <dd>
+          <span>{{ idioma.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.idioma.pessoa">Pessoa</span></dt>
+        <dd>
+          <div *ngIf="idioma.pessoa">
+            <a [routerLink]="['/pessoa', idioma.pessoa?.id, 'view']">{{ idioma.pessoa?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/idioma', idioma.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

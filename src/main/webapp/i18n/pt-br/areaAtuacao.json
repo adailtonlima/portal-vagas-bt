@@ -1,0 +1,28 @@
+{
+  "portalVagasEmpregoApp": {
+    "areaAtuacao": {
+      "home": {
+        "title": "Area Atuacaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Area Atuacao",
+        "createOrEditLabel": "Criar ou editar Area Atuacao",
+        "notFound": "Nenhum Area Atuacao encontrado"
+      },
+      "created": "Um novo Area Atuacao foi criado com o identificador {{ param }}",
+      "updated": "Um Area Atuacao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Area Atuacao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Area Atuacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Area Atuacao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "iconeUrl": "Icone Url",
+      "ativo": "Ativo",
+      "criado": "Criado"
+    }
+  }
+}

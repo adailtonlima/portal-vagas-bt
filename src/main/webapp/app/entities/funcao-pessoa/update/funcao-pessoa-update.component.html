@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-funcao-pessoa-heading"
+        data-cy="FuncaoPessoaCreateUpdateHeading"
+        jhiTranslate="portalVagasEmpregoApp.funcaoPessoa.home.createOrEditLabel"
+      >
+        Create or edit a Funcao Pessoa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.funcaoPessoa.funcao" for="field_funcao">Funcao</label>
+          <select class="form-control" name="funcao" formControlName="funcao" id="field_funcao" data-cy="funcao">
+            <option [ngValue]="null">{{ 'portalVagasEmpregoApp.Funcao.null' | translate }}</option>
+            <option value="ADMIN">{{ 'portalVagasEmpregoApp.Funcao.ADMIN' | translate }}</option>
+            <option value="VAGAS">{{ 'portalVagasEmpregoApp.Funcao.VAGAS' | translate }}</option>
+            <option value="CANDIDATOS">{{ 'portalVagasEmpregoApp.Funcao.CANDIDATOS' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.funcaoPessoa.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('criado')!.invalid && (editForm.get('criado')!.dirty || editForm.get('criado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('criado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('criado')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.funcaoPessoa.ativo" for="field_ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.funcaoPessoa.pessoa" for="field_pessoa">Pessoa</label>
+          <select class="form-control" id="field_pessoa" data-cy="pessoa" name="pessoa" formControlName="pessoa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pessoaOption.id === editForm.get('pessoa')!.value?.id ? editForm.get('pessoa')!.value : pessoaOption"
+              *ngFor="let pessoaOption of pessoasSharedCollection; trackBy: trackPessoaById"
+            >
+              {{ pessoaOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

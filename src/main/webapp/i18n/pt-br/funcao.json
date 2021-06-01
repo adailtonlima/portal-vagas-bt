@@ -1,0 +1,10 @@
+{
+  "portalVagasEmpregoApp": {
+    "Funcao": {
+      "null": "",
+      "ADMIN": "ADMIN",
+      "VAGAS": "VAGAS",
+      "CANDIDATOS": "CANDIDATOS"
+    }
+  }
+}

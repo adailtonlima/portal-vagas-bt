@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="areaAtuacao">
+      <h2 data-cy="areaAtuacaoDetailsHeading"><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.detail.title">Area Atuacao</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.nome">Nome</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.iconeUrl">Icone Url</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.iconeUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.ativo">Ativo</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.ativo }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.areaAtuacao.criado">Criado</span></dt>
+        <dd>
+          <span>{{ areaAtuacao.criado | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/area-atuacao', areaAtuacao.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+{
+  "name": "ExperienciaProfissional",
+  "fields": [
+    {
+      "fieldName": "empresa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cargo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "segmento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "porte",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "inicio",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "fim",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "descricaoAtividade",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "salario",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "beneficios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "experienciaProfissional",
+      "relationshipName": "pessoa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "experiencia_profissional",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113122"
+}

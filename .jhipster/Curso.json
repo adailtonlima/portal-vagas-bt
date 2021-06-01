@@ -1,0 +1,42 @@
+{
+  "name": "Curso",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "periodo",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "curso",
+      "relationshipName": "pessoa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "curso",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113124"
+}

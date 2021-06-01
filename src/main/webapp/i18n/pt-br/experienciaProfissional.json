@@ -1,0 +1,34 @@
+{
+  "portalVagasEmpregoApp": {
+    "experienciaProfissional": {
+      "home": {
+        "title": "Experiencia Profissionals",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Experiencia Profissional",
+        "createOrEditLabel": "Criar ou editar Experiencia Profissional",
+        "notFound": "Nenhum Experiencia Profissional encontrado"
+      },
+      "created": "Um novo Experiencia Profissional foi criado com o identificador {{ param }}",
+      "updated": "Um Experiencia Profissional foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Experiencia Profissional foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Experiencia Profissional {{ id }}?"
+      },
+      "detail": {
+        "title": "Experiencia Profissional"
+      },
+      "id": "ID",
+      "empresa": "Empresa",
+      "cargo": "Cargo",
+      "segmento": "Segmento",
+      "porte": "Porte",
+      "inicio": "Inicio",
+      "fim": "Fim",
+      "descricaoAtividade": "Descricao Atividade",
+      "salario": "Salario",
+      "beneficios": "Beneficios",
+      "criado": "Criado",
+      "pessoa": "Pessoa"
+    }
+  }
+}

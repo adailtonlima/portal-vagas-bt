@@ -1,0 +1,87 @@
+{
+  "name": "Vaga",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "estagio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "salario",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "beneficios",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "jornadaSemanal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "bannerUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fonte",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "linkRecrutamento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "preenchida",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prazoAnuncio",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "vaga",
+      "relationshipName": "cadastrou",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "vaga",
+      "relationshipName": "empresa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "vaga",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113116"
+}

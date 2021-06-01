@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="vaga">
+      <h2 data-cy="vagaDetailsHeading"><span jhiTranslate="portalVagasEmpregoApp.vaga.detail.title">Vaga</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ vaga.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ vaga.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.titulo">Titulo</span></dt>
+        <dd>
+          <span>{{ vaga.titulo }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.estagio">Estagio</span></dt>
+        <dd>
+          <span>{{ vaga.estagio }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.salario">Salario</span></dt>
+        <dd>
+          <span>{{ vaga.salario }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.beneficios">Beneficios</span></dt>
+        <dd>
+          <span>{{ vaga.beneficios }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.jornadaSemanal">Jornada Semanal</span></dt>
+        <dd>
+          <span>{{ vaga.jornadaSemanal }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.bannerUrl">Banner Url</span></dt>
+        <dd>
+          <span>{{ vaga.bannerUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.fonte">Fonte</span></dt>
+        <dd>
+          <span>{{ vaga.fonte }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.linkRecrutamento">Link Recrutamento</span></dt>
+        <dd>
+          <span>{{ vaga.linkRecrutamento }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.ativo">Ativo</span></dt>
+        <dd>
+          <span>{{ vaga.ativo }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.preenchida">Preenchida</span></dt>
+        <dd>
+          <span>{{ vaga.preenchida }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.criado">Criado</span></dt>
+        <dd>
+          <span>{{ vaga.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.prazoAnuncio">Prazo Anuncio</span></dt>
+        <dd>
+          <span>{{ vaga.prazoAnuncio | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.cadastrou">Cadastrou</span></dt>
+        <dd>
+          <div *ngIf="vaga.cadastrou">
+            <a [routerLink]="['/pessoa', vaga.cadastrou?.id, 'view']">{{ vaga.cadastrou?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="portalVagasEmpregoApp.vaga.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="vaga.empresa">
+            <a [routerLink]="['/empresa', vaga.empresa?.id, 'view']">{{ vaga.empresa?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/vaga', vaga.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

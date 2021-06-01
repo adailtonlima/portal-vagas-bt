@@ -1,0 +1,205 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-vaga-heading" data-cy="VagaCreateUpdateHeading" jhiTranslate="portalVagasEmpregoApp.vaga.home.createOrEditLabel">
+        Create or edit a Vaga
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.descricao" for="field_descricao">Descricao</label>
+          <textarea class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao"></textarea>
+          <div *ngIf="editForm.get('descricao')!.invalid && (editForm.get('descricao')!.dirty || editForm.get('descricao')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('descricao')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.titulo" for="field_titulo">Titulo</label>
+          <input type="text" class="form-control" name="titulo" id="field_titulo" data-cy="titulo" formControlName="titulo" />
+          <div *ngIf="editForm.get('titulo')!.invalid && (editForm.get('titulo')!.dirty || editForm.get('titulo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('titulo')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.estagio" for="field_estagio">Estagio</label>
+          <input type="checkbox" class="form-check" name="estagio" id="field_estagio" data-cy="estagio" formControlName="estagio" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.salario" for="field_salario">Salario</label>
+          <input type="number" class="form-control" name="salario" id="field_salario" data-cy="salario" formControlName="salario" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.beneficios" for="field_beneficios">Beneficios</label>
+          <input
+            type="number"
+            class="form-control"
+            name="beneficios"
+            id="field_beneficios"
+            data-cy="beneficios"
+            formControlName="beneficios"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.jornadaSemanal" for="field_jornadaSemanal"
+            >Jornada Semanal</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="jornadaSemanal"
+            id="field_jornadaSemanal"
+            data-cy="jornadaSemanal"
+            formControlName="jornadaSemanal"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.bannerUrl" for="field_bannerUrl">Banner Url</label>
+          <input type="text" class="form-control" name="bannerUrl" id="field_bannerUrl" data-cy="bannerUrl" formControlName="bannerUrl" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.fonte" for="field_fonte">Fonte</label>
+          <input type="text" class="form-control" name="fonte" id="field_fonte" data-cy="fonte" formControlName="fonte" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.linkRecrutamento" for="field_linkRecrutamento"
+            >Link Recrutamento</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="linkRecrutamento"
+            id="field_linkRecrutamento"
+            data-cy="linkRecrutamento"
+            formControlName="linkRecrutamento"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.ativo" for="field_ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.preenchida" for="field_preenchida">Preenchida</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="preenchida"
+            id="field_preenchida"
+            data-cy="preenchida"
+            formControlName="preenchida"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('criado')!.invalid && (editForm.get('criado')!.dirty || editForm.get('criado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('criado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('criado')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.prazoAnuncio" for="field_prazoAnuncio"
+            >Prazo Anuncio</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_prazoAnuncio"
+              data-cy="prazoAnuncio"
+              type="datetime-local"
+              class="form-control"
+              name="prazoAnuncio"
+              formControlName="prazoAnuncio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.cadastrou" for="field_cadastrou">Cadastrou</label>
+          <select class="form-control" id="field_cadastrou" data-cy="cadastrou" name="cadastrou" formControlName="cadastrou">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pessoaOption.id === editForm.get('cadastrou')!.value?.id ? editForm.get('cadastrou')!.value : pessoaOption"
+              *ngFor="let pessoaOption of pessoasSharedCollection; trackBy: trackPessoaById"
+            >
+              {{ pessoaOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.vaga.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

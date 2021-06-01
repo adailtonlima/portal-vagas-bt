@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-idioma-heading" data-cy="IdiomaCreateUpdateHeading" jhiTranslate="portalVagasEmpregoApp.idioma.home.createOrEditLabel">
+        Create or edit a Idioma
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.idioma.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.idioma.nivel" for="field_nivel">Nivel</label>
+          <select class="form-control" name="nivel" formControlName="nivel" id="field_nivel" data-cy="nivel">
+            <option [ngValue]="null">{{ 'portalVagasEmpregoApp.NivelIdioma.null' | translate }}</option>
+            <option value="LEITURA">{{ 'portalVagasEmpregoApp.NivelIdioma.LEITURA' | translate }}</option>
+            <option value="ESCRITA">{{ 'portalVagasEmpregoApp.NivelIdioma.ESCRITA' | translate }}</option>
+            <option value="CONVERSACAO">{{ 'portalVagasEmpregoApp.NivelIdioma.CONVERSACAO' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.idioma.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('criado')!.invalid && (editForm.get('criado')!.dirty || editForm.get('criado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('criado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('criado')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.idioma.pessoa" for="field_pessoa">Pessoa</label>
+          <select class="form-control" id="field_pessoa" data-cy="pessoa" name="pessoa" formControlName="pessoa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pessoaOption.id === editForm.get('pessoa')!.value?.id ? editForm.get('pessoa')!.value : pessoaOption"
+              *ngFor="let pessoaOption of pessoasSharedCollection; trackBy: trackPessoaById"
+            >
+              {{ pessoaOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "portalVagasEmpregoApp": {
+    "NivelIdioma": {
+      "null": "",
+      "LEITURA": "LEITURA",
+      "ESCRITA": "ESCRITA",
+      "CONVERSACAO": "CONVERSACAO"
+    }
+  }
+}

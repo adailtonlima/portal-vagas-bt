@@ -1,0 +1,122 @@
+<div>
+  <h2 id="page-heading" data-cy="FormacaoHeading">
+    <span jhiTranslate="portalVagasEmpregoApp.formacao.home.title">Formacaos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.formacao.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-formacao"
+        [routerLink]="['/formacao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="portalVagasEmpregoApp.formacao.home.createLabel"> Create a new Formacao </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="formacaos?.length === 0">
+    <span jhiTranslate="portalVagasEmpregoApp.formacao.home.notFound">No formacaos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="formacaos && formacaos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="instituicao">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.instituicao">Instituicao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipo">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.tipo">Tipo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="inicio">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.inicio">Inicio</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="conclusao">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.conclusao">Conclusao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criado">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.criado">Criado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pessoa.nome">
+            <span jhiTranslate="portalVagasEmpregoApp.formacao.pessoa">Pessoa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let formacao of formacaos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/formacao', formacao.id, 'view']">{{ formacao.id }}</a>
+          </td>
+          <td>{{ formacao.instituicao }}</td>
+          <td>{{ formacao.tipo }}</td>
+          <td>{{ formacao.inicio | formatMediumDate }}</td>
+          <td>{{ formacao.conclusao | formatMediumDate }}</td>
+          <td>{{ formacao.criado | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="formacao.pessoa">
+              <a [routerLink]="['/pessoa', formacao.pessoa?.id, 'view']">{{ formacao.pessoa?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/formacao', formacao.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/formacao', formacao.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(formacao)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="formacaos && formacaos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

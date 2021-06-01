@@ -1,0 +1,53 @@
+{
+  "name": "PerfilProfissional",
+  "fields": [
+    {
+      "fieldName": "estagio",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "procurandoEmprego",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "objetivosPessoais",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "pretensaoSalarial",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "areaAtuacao",
+      "otherEntityRelationshipName": "perfilProfissional",
+      "relationshipName": "area",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pessoa",
+      "otherEntityRelationshipName": "perfilProfissional",
+      "relationshipName": "pessoa",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "perfil_profissional",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210601113121"
+}

@@ -1,0 +1,202 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pessoa-heading" data-cy="PessoaCreateUpdateHeading" jhiTranslate="portalVagasEmpregoApp.pessoa.home.createOrEditLabel">
+        Create or edit a Pessoa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.dataNascimento" for="field_dataNascimento"
+            >Data Nascimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataNascimento"
+              data-cy="dataNascimento"
+              type="text"
+              class="form-control"
+              name="dataNascimento"
+              ngbDatepicker
+              #dataNascimentoDp="ngbDatepicker"
+              formControlName="dataNascimento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.cpf" for="field_cpf">Cpf</label>
+          <input type="text" class="form-control" name="cpf" id="field_cpf" data-cy="cpf" formControlName="cpf" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.telefone" for="field_telefone">Telefone</label>
+          <input type="text" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.nacionalidade" for="field_nacionalidade"
+            >Nacionalidade</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nacionalidade"
+            id="field_nacionalidade"
+            data-cy="nacionalidade"
+            formControlName="nacionalidade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.naturalidade" for="field_naturalidade"
+            >Naturalidade</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="naturalidade"
+            id="field_naturalidade"
+            data-cy="naturalidade"
+            formControlName="naturalidade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.sexo" for="field_sexo">Sexo</label>
+          <input type="text" class="form-control" name="sexo" id="field_sexo" data-cy="sexo" formControlName="sexo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.estadoCivil" for="field_estadoCivil"
+            >Estado Civil</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="estadoCivil"
+            id="field_estadoCivil"
+            data-cy="estadoCivil"
+            formControlName="estadoCivil"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.pcd" for="field_pcd">Pcd</label>
+          <input type="checkbox" class="form-check" name="pcd" id="field_pcd" data-cy="pcd" formControlName="pcd" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.pcdCID" for="field_pcdCID">Pcd CID</label>
+          <input type="text" class="form-control" name="pcdCID" id="field_pcdCID" data-cy="pcdCID" formControlName="pcdCID" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.cnh" for="field_cnh">Cnh</label>
+          <input type="text" class="form-control" name="cnh" id="field_cnh" data-cy="cnh" formControlName="cnh" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.fotoUrl" for="field_fotoUrl">Foto Url</label>
+          <input type="text" class="form-control" name="fotoUrl" id="field_fotoUrl" data-cy="fotoUrl" formControlName="fotoUrl" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('criado')!.invalid && (editForm.get('criado')!.dirty || editForm.get('criado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('criado')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('criado')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.endereco" for="field_endereco">Endereco</label>
+          <select class="form-control" id="field_endereco" data-cy="endereco" name="endereco" formControlName="endereco">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="enderecoOption.id === editForm.get('endereco')!.value?.id ? editForm.get('endereco')!.value : enderecoOption"
+              *ngFor="let enderecoOption of enderecosCollection; trackBy: trackEnderecoById"
+            >
+              {{ enderecoOption.cep }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="portalVagasEmpregoApp.pessoa.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.login }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
